@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="@dimen/cardview_elevation"
+    app:cardCornerRadius="@dimen/card_corner"
+    android:layout_margin="@dimen/default_padding"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_item"
+        android:padding="@dimen/default_margin"
+        style="@style/make_clickable"
+        >
+
+        <TextView
+            android:id="@+id/item_deaths"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            style="@style/font_body_text"
+            android:gravity="center_vertical"
+            android:padding="@dimen/default_padding"
+            tools:text="444k"
+            />
+
+        <TextView
+            android:id="@+id/item_confirmed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@id/item_deaths"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:gravity="center_vertical"
+            android:padding="@dimen/default_padding"
+            style="@style/font_body_text"
+            tools:text="1.89M"
+            />
+
+
+        <TextView
+            android:id="@+id/item_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/item_confirmed"
+            app:layout_constraintBottom_toBottomOf="parent"
+            style="@style/font_title_text"
+            tools:text="Title goes here"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.cardview.widget.CardView>

@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Covid Tracker</string>
+    <string name="splash_title">Collecting tracking data…</string>
+    <string name="toolbar_count_title">%s confirmed cases</string>
+    <string name="toolbar_world_country">Country</string>
+    <string name="toolbar_state">State</string>
+    <string name="toolbar_confirmed">Confirmed</string>
+    <string name="toolbar_deaths">Deaths</string>
+    <string name="navbar_world">World</string>
+    <string name="navbar_usa">USA</string>
 </resources>
