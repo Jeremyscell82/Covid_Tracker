@@ -7,8 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.lloydsbyte.covidtracker.DebugBottomSheet
 import com.lloydsbyte.covidtracker.R
 import kotlinx.android.synthetic.main.fragment_usa.view.*
+import kotlinx.android.synthetic.main.layout_toolbar.*
+import timber.log.Timber
 
 class UsaFragment: Fragment() {
 
@@ -26,11 +29,15 @@ class UsaFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         view.apply {
+            Timber.d("JL_ adapter item has been created")
+            toolbar_item_title.text = resources.getString(R.string.toolbar_state)
             usa_recyclerview.apply {
                 layoutManager = LinearLayoutManager(this.context, RecyclerView.VERTICAL, false)
                 adapter = usaAdapter
                 usaAdapter.onItemClicked = {
-
+                    Timber.d("JL_ adapter item has been clicked")
+                    val bottomsheet = DebugBottomSheet()
+                    bottomsheet.show(requireActivity().supportFragmentManager, bottomsheet.tag)
                 }
             }
         }

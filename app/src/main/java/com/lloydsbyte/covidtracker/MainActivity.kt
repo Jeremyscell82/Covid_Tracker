@@ -2,6 +2,7 @@ package com.lloydsbyte.covidtracker
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.lloydsbyte.covidtracker.home.ViewPagerFragment
 
 class MainActivity : AppCompatActivity() {

@@ -8,12 +8,23 @@
         <item name="colorControlHighlight">@color/colorAccent</item>
         <item name="android:statusBarColor">@color/colorPrimary</item>
         <item name="android:navigationBarColor">@color/colorPrimary</item>
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
     </style>
 
     <style name="SplashTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:navigationBarColor">@color/ic_launcher_background</item>
         <item name="android:windowBackground">@color/ic_launcher_background</item>
         <item name="android:statusBarColor">@color/ic_launcher_background</item>
+    </style>
+
+    <!-- Bottomsheet Style ...Gives the bottom sheet the rounded corners -->
+    <style name="AppBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+        <item name="colorControlHighlight">@color/colorAccent</item>
+    </style>
+    <!-- Used with the bottom sheet styling -->
+    <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/background_bottomsheet</item>
     </style>
 
     <style name="font_title_text">

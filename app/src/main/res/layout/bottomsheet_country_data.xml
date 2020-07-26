@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_bottomsheet"
+    app:layout_behavior="@string/bottom_sheet_behavior">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/country_center_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".5"/>
+
+    <LinearLayout
+        android:id="@+id/country_top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="@dimen/default_padding">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/country_close_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_padding"
+            android:layout_gravity="end"
+            android:elevation="0dp"
+            android:src="@drawable/ic_close"
+            app:backgroundTint="@color/colorPrimaryDark"
+            app:fabSize="mini"
+            app:rippleColor="@color/primaryTextColor"
+            app:tint="@color/primaryTextColor" />
+
+        <TextView
+            style="@style/font_title_text"
+            android:textSize="24sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primaryTextColor"
+            android:text="United States of America" />
+
+        <TextView
+            style="@style/font_body_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primaryTextColor"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginBottom="@dimen/default_padding"
+            android:text="population 900,000" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/whiteShadow"
+            android:layout_margin="@dimen/default_padding"/>
+
+        <TextView
+            style="@style/font_body_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:textColor="@color/primaryTextColor"
+            android:text="Updated on 7/21/2020" />
+
+    </LinearLayout>
+
+    <!-- Grid Section -->
+    <TextView
+        android:id="@+id/country_recovered"
+        style="@style/font_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/primaryTextColor"
+        android:text="48k\nRecovered"
+        android:gravity="center_horizontal"
+        app:layout_constraintTop_toBottomOf="@id/country_top_layout"
+        app:layout_constraintStart_toEndOf="@id/country_center_guideline"
+        app:layout_constraintEnd_toStartOf="@id/country_center_guideline"/>
+
+    <TextView
+        android:id="@+id/country_confirmed"
+        style="@style/font_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/primaryTextColor"
+        android:text="48k\nConfirmed"
+        android:gravity="center_horizontal"
+        app:layout_constraintTop_toBottomOf="@id/country_top_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/country_recovered"/>
+
+    <TextView
+        android:id="@+id/country_deaths"
+        style="@style/font_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/primaryTextColor"
+        android:text="48k\nDeaths"
+        android:gravity="center_horizontal"
+        app:layout_constraintTop_toBottomOf="@id/country_top_layout"
+        app:layout_constraintStart_toEndOf="@id/country_recovered"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    <TextView
+        android:id="@+id/country_recovery_rate"
+        style="@style/font_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/primaryTextColor"
+        android:text="85%\n recover rate"
+        android:gravity="center_horizontal"
+        app:layout_constraintTop_toBottomOf="@id/country_recovered"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/country_center_guideline"/>
+
+    <TextView
+        android:id="@+id/country_death_rate"
+        style="@style/font_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/primaryTextColor"
+        android:text="6%\ndeath rate"
+        android:gravity="center_horizontal"
+        app:layout_constraintStart_toEndOf="@id/country_center_guideline"
+        app:layout_constraintTop_toBottomOf="@id/country_recovered"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="@color/whiteShadow"
+        android:layout_margin="@dimen/default_padding"
+        app:layout_constraintTop_toBottomOf="@id/country_recovery_rate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/country_recovery_rate"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="16:9"
+        android:layout_margin="@dimen/default_margin"
+        android:background="@color/whiteShadow"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

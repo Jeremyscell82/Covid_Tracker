@@ -30,9 +30,14 @@ class WorldFragment: Fragment() {
                 layoutManager = LinearLayoutManager(this.context, RecyclerView.VERTICAL, false)
                 adapter = worldAdapter
                 worldAdapter.onItemClicked = {
-
+                    launchDataSheet()
                 }
             }
         }
+    }
+
+    private fun launchDataSheet() {
+        val bottomsheet = CountryDataBottomSheet()
+        bottomsheet.show(requireActivity().supportFragmentManager, bottomsheet.tag)
     }
 }

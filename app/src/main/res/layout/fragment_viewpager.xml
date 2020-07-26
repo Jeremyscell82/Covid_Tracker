@@ -23,7 +23,7 @@
     <me.ibrahimsn.lib.SmoothBottomBar
         android:id="@+id/home_bottom_navbar"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="48dp"
         android:layout_gravity="bottom"
         android:layout_marginBottom="@dimen/default_padding"
         android:orientation="vertical"

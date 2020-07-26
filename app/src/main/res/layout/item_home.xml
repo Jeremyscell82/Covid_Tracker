@@ -8,14 +8,13 @@
     app:cardElevation="@dimen/cardview_elevation"
     app:cardCornerRadius="@dimen/card_corner"
     android:layout_margin="@dimen/default_padding"
-    >
+    style="@style/make_clickable">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/background_item"
         android:padding="@dimen/default_margin"
-        style="@style/make_clickable"
         >
 
         <TextView
@@ -58,9 +57,6 @@
             tools:text="Title goes here"
             />
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 </androidx.cardview.widget.CardView>

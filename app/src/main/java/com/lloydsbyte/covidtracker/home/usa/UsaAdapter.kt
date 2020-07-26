@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.item_home.view.*
 class UsaAdapter: RecyclerView.Adapter<UsaAdapter.UsaViewHolder>() {
 
     var adapterItems: List<UsaModel> = emptyList()
-    var onItemClicked: ((UsaModel) -> Unit)? = null
+    var onItemClicked: ((UsaModel?) -> Unit)? = null
 
     fun initAdapter(items: List<UsaModel>, recyclerView: RecyclerView){
         adapterItems = items
@@ -40,7 +40,7 @@ class UsaAdapter: RecyclerView.Adapter<UsaAdapter.UsaViewHolder>() {
                 item_confirmed.text = "1.89M"
                 item_deaths.text = "444k"
                 setOnClickListener {
-//                    onItemClicked?.invoke(usaModel)
+                    onItemClicked?.invoke(usaModel)
                 }
             }
         }

@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.item_home.view.*
 class WorldAdapter: RecyclerView.Adapter<WorldAdapter.WorldViewHolder>() {
 
     var adapterItems: List<WorldModel> = emptyList()
-    var onItemClicked: ((WorldModel) -> Unit)? = null
+    var onItemClicked: ((WorldModel?) -> Unit)? = null
 
     fun initAdapter(items: List<WorldModel>, recyclerView: RecyclerView){
         adapterItems = items
@@ -42,7 +42,7 @@ class WorldAdapter: RecyclerView.Adapter<WorldAdapter.WorldViewHolder>() {
                 item_confirmed.text = "1.89M"
                 item_deaths.text = "444k"
                 setOnClickListener {
-//                    onItemClicked?.invoke(worldModel)
+                    onItemClicked?.invoke(worldModel)
                 }
             }
         }
