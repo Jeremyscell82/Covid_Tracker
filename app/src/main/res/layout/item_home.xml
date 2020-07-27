@@ -59,6 +59,7 @@
             app:layout_constraintEnd_toStartOf="@id/item_confirmed"
             app:layout_constraintBottom_toBottomOf="parent"
             android:ellipsize="end"
+            android:singleLine="true"
             style="@style/font_item_title"
             tools:text="Title goes here"
             />

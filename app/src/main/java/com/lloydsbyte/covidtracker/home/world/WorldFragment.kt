@@ -22,9 +22,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_world.view.*
+import kotlinx.android.synthetic.main.layout_toolbar.*
 import kotlinx.android.synthetic.main.layout_toolbar.view.*
 import timber.log.Timber
-import java.text.NumberFormat
 
 class WorldFragment : Fragment() {
 
@@ -58,17 +58,15 @@ class WorldFragment : Fragment() {
 
             toolbar_search_fab.setOnClickListener {
                 toolbar_search_fab.isExpanded = true
-                showHideKeyboardForSearch(requireContext(), true, country_search_field)
+                showHideKeyboardForSearch(requireContext(), true, search_field)
                 keyboardDisplayed = true
             }
 
             search_close_icon.setOnClickListener {
-                toolbar_search_fab.isExpanded = false
-                country_search_field.setText("") //Clear entry on closing of search bar
-                showHideKeyboardForSearch(requireContext(), false, country_search_field)
+                closeSearchBar()
             }
 
-            country_search_field.addTextChangedListener(object : TextWatcher {
+            search_field.addTextChangedListener(object : TextWatcher {
                 override fun afterTextChanged(p0: Editable?) {
                 }
 
@@ -81,7 +79,7 @@ class WorldFragment : Fragment() {
                 }
 
             })
-            country_search_field.setOnFocusChangeListener { view, b ->
+            search_field.setOnFocusChangeListener { view, b ->
                 keyboardDisplayed = b
             }
 
@@ -91,7 +89,7 @@ class WorldFragment : Fragment() {
                     showHideKeyboardForSearch(
                         requireContext(),
                         false,
-                        country_search_field
+                        search_field
                     )
                     keyboardDisplayed = false
                 }
@@ -144,11 +142,21 @@ class WorldFragment : Fragment() {
         bottomsheet.show(requireActivity().supportFragmentManager, bottomsheet.tag)
     }
 
-
+    fun closeSearchBar(){
+        toolbar_search_fab.isExpanded = false
+        search_field.setText("") //Clear entry on closing of search bar
+        showHideKeyboardForSearch(requireContext(), false, search_field)
+        keyboardDisplayed = false
+    }
 
     override fun onDestroy() {
         super.onDestroy()
         connectionDisposable?.dispose()
         databaseDisposable?.dispose()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (keyboardDisplayed)closeSearchBar()
     }
 }

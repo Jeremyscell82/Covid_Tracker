@@ -6,16 +6,40 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.lloydsbyte.covidtracker.R
+import com.lloydsbyte.covidtracker.database.StateModel
+import com.lloydsbyte.covidtracker.utilz.AppUtilz
 import kotlinx.android.synthetic.main.item_home.view.*
 
 class UsaAdapter: RecyclerView.Adapter<UsaAdapter.UsaViewHolder>() {
 
-    var adapterItems: List<UsaModel> = emptyList()
-    var onItemClicked: ((UsaModel?) -> Unit)? = null
+    var fullListBU: List<StateModel> = emptyList()
+    var adapterItems: List<StateModel> = emptyList()
+    var onItemClicked: ((StateModel?) -> Unit)? = null
 
-    fun initAdapter(items: List<UsaModel>, recyclerView: RecyclerView){
-        adapterItems = items
-        val anim = AnimationUtils.loadLayoutAnimation(recyclerView.context,
+    fun initAdapter(items: List<StateModel>, recyclerView: RecyclerView){
+        //Sort the list
+        fullListBU = items.sortedByDescending {
+            it.totalConfirmed
+        }
+        adapterItems = fullListBU
+        refreshAdapter(recyclerView)
+    }
+
+    fun filterAdapter(filter: String, recyclerView: RecyclerView){
+        adapterItems = if (filter.isEmpty()){
+            fullListBU
+        } else {
+            val filteredItems = fullListBU.filter {
+                it.stateName.toLowerCase().contains(filter.toLowerCase())
+            }
+            filteredItems
+        }
+        refreshAdapter(recyclerView)
+    }
+
+    private fun refreshAdapter(recyclerView: RecyclerView){
+        val anim = AnimationUtils.loadLayoutAnimation(
+            recyclerView.context,
             R.anim.recyclerview_animation
         )
         recyclerView.layoutAnimation = anim
@@ -27,20 +51,20 @@ class UsaAdapter: RecyclerView.Adapter<UsaAdapter.UsaViewHolder>() {
         return UsaViewHolder(inflater.inflate(R.layout.item_home, parent, false))
     }
 
-    override fun getItemCount() = 15//adapterItems.size
+    override fun getItemCount() = adapterItems.size
 
     override fun onBindViewHolder(holder: UsaViewHolder, position: Int) {
-        holder.bind(null)//adapterItems[position])
+        holder.bind(adapterItems[position])
     }
 
     inner class UsaViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        fun bind(usaModel: UsaModel?) {
+        fun bind(stateModel: StateModel) {
             itemView.apply {
-                item_title.text = "United States of America"
-                item_confirmed.text = "1.89M"
-                item_deaths.text = "444k"
+                item_title.text = stateModel.stateName
+                item_confirmed.text = AppUtilz.insertCommas(stateModel.totalConfirmed)
+                item_deaths.text = AppUtilz.insertCommas(stateModel.totalDeaths)
                 setOnClickListener {
-                    onItemClicked?.invoke(usaModel)
+                    onItemClicked?.invoke(stateModel)
                 }
             }
         }

@@ -6,6 +6,7 @@ import androidx.room.Room
 import com.lloydsbyte.covidtracker.database.AppDatabase
 import com.lloydsbyte.covidtracker.home.HomeViewPagerFragment
 import com.lloydsbyte.covidtracker.database.CountryModel
+import com.lloydsbyte.covidtracker.database.StateModel
 import com.lloydsbyte.covidtracker.utilz.AppUtilz
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -45,8 +46,14 @@ class MainActivity : AppCompatActivity() {
     fun saveWorldData(countriesList: List<CountryModel>) {
         Timber.d("JL_ Saving ${countriesList.size} countries to the database")
         GlobalScope.launch {
-            appDatabase.clearAllTables()
             appDatabase.WorldDao().addWorldList(countriesList)
+        }
+    }
+
+    fun saveUsaData(stateList: List<StateModel>) {
+        Timber.d("JL_ Saving ${stateList.size} states to the database")
+        GlobalScope.launch {
+            appDatabase.UsaDao().addStatesList(stateList)
         }
     }
 

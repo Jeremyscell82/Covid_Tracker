@@ -82,7 +82,7 @@
                 android:paddingBottom="@dimen/default_padding">
 
                 <EditText
-                    android:id="@+id/country_search_field"
+                    android:id="@+id/search_field"
                     style="@style/font_toolbar_title"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

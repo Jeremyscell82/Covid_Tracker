@@ -66,7 +66,7 @@ class WorldDataApiService {
                 val retrofit = Retrofit.Builder()
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl(NetworkConstants.BASE_URL)
+                    .baseUrl(NetworkConstants.WORLD_BASE_URL)
                     .build()
                 return retrofit.create(ApiService::class.java)
             }
