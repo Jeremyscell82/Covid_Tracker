@@ -14,6 +14,22 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent=".5"/>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/country_close_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:elevation="0dp"
+        android:src="@drawable/ic_close"
+        app:backgroundTint="@color/colorPrimaryDark"
+        app:fabSize="mini"
+        app:rippleColor="@color/primaryTextColor"
+        app:tint="@color/primaryTextColor"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+
     <LinearLayout
         android:id="@+id/country_top_layout"
         android:layout_width="match_parent"
@@ -22,22 +38,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:padding="@dimen/default_padding">
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/country_close_fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_padding"
-            android:layout_gravity="end"
-            android:elevation="0dp"
-            android:src="@drawable/ic_close"
-            app:backgroundTint="@color/colorPrimaryDark"
-            app:fabSize="mini"
-            app:rippleColor="@color/primaryTextColor"
-            app:tint="@color/primaryTextColor" />
+        android:padding="@dimen/default_padding"
+        android:layout_marginTop="36dp">
 
         <TextView
+            android:id="@+id/country_name"
             style="@style/font_title_text"
             android:textSize="24sp"
             android:layout_width="match_parent"
@@ -46,6 +51,7 @@
             android:text="United States of America" />
 
         <TextView
+            android:id="@+id/country_population"
             style="@style/font_body_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -61,6 +67,7 @@
             android:layout_margin="@dimen/default_padding"/>
 
         <TextView
+            android:id="@+id/country_updated_at"
             style="@style/font_body_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

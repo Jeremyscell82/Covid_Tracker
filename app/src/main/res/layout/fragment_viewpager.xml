@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/home_screen_viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/home_bottom_navbar"/>
 
     <View
         android:layout_width="0dp"
-        android:layout_height="68dp"
+        android:layout_height="@dimen/bottom_nav_bg_height"
         android:layout_gravity="bottom"
         android:background="@drawable/background_bottom_navbar"
         android:clickable="true"
@@ -23,7 +28,7 @@
     <me.ibrahimsn.lib.SmoothBottomBar
         android:id="@+id/home_bottom_navbar"
         android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_height="@dimen/bottom_nav_height"
         android:layout_gravity="bottom"
         android:layout_marginBottom="@dimen/default_padding"
         android:orientation="vertical"
@@ -36,5 +41,7 @@
         app:menu="@menu/navbar_menu"
         app:textSize="14sp"
         />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

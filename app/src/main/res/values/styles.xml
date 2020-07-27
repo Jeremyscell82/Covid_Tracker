@@ -39,10 +39,32 @@
         <item name="android:textColor">@color/secondaryTextColor</item>
     </style>
 
-    <style name="font_toolbar">
+    <style name="font_item_title">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:padding">@dimen/default_padding</item>
+        <item name="android:shadowColor">#000</item>
+        <item name="android:shadowDx">2</item>
+        <item name="android:shadowDy">2</item>
+        <item name="android:shadowRadius">1</item>
+    </style>
+
+    <style name="font_item_subtitle">
         <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/secondaryTextColor</item>
+        <item name="android:padding">@dimen/default_padding</item>
+    </style>
+
+    <style name="font_toolbar_title">
+        <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/primaryTextColor</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="font_toolbar_subtitle">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
     </style>
 
     <style name="make_clickable">

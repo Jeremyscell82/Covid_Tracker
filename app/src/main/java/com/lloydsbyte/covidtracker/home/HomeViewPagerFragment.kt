@@ -5,19 +5,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
 import com.lloydsbyte.covidtracker.R
 import kotlinx.android.synthetic.main.fragment_viewpager.view.*
 
-class ViewPagerFragment: Fragment() {
+class HomeViewPagerFragment: Fragment() {
 
     private var screenPosition = 0
+    companion object {
+        lateinit var homeViewModel: HomeViewModel
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         return inflater.inflate(R.layout.fragment_viewpager, container, false)
     }
 
@@ -25,7 +30,7 @@ class ViewPagerFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         view.apply {
             home_screen_viewpager.apply {
-                adapter = ViewPagerAdapter(
+                adapter = HomeViewPagerAdapter(
                     requireActivity().supportFragmentManager
                 )
                 addOnPageChangeListener(object : ViewPager.OnPageChangeListener {

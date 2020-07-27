@@ -7,7 +7,7 @@ import com.lloydsbyte.covidtracker.home.usa.UsaFragment
 import com.lloydsbyte.covidtracker.home.world.WorldFragment
 
 
-class ViewPagerAdapter(fragmentManager: FragmentManager) :
+class HomeViewPagerAdapter(fragmentManager: FragmentManager) :
     FragmentStatePagerAdapter(fragmentManager) {
 
     val homeScreens = listOf(

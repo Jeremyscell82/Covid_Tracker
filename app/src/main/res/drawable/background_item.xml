@@ -5,9 +5,12 @@
     <gradient
         android:angle="90"
         android:type="linear"
-        android:endColor="#4D90BFFA"
+        android:endColor="#8090BFFA"
         android:centerColor="#80CED8E4"
         android:startColor="#8090BFFA"/>
+
+    <corners
+        android:radius="@dimen/card_corner"/>
 
     <stroke
         android:color="#80EBF4FF"

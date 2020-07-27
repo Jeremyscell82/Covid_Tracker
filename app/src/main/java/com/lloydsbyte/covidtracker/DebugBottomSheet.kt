@@ -48,7 +48,7 @@ class DebugBottomSheet: BottomSheetDialogFragment()  {
     }
 
     private fun makeApiCall(){
-        disposable = createApiService.getWorldData()
+        disposable = createApiService.pullWorldData()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(

@@ -4,15 +4,33 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.lloydsbyte.covidtracker.MainActivity
 import com.lloydsbyte.covidtracker.R
+import com.lloydsbyte.covidtracker.home.HomeViewPagerFragment
+import com.lloydsbyte.covidtracker.database.CountryModel
+import com.lloydsbyte.covidtracker.utilz.ModelConverter
+import com.lloydsbyte.covidtracker.network.WorldDataApiService
+import com.lloydsbyte.covidtracker.utilz.AppUtilz
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_world.view.*
+import kotlinx.android.synthetic.main.layout_toolbar.view.*
+import timber.log.Timber
+import java.text.NumberFormat
 
-class WorldFragment: Fragment() {
+class WorldFragment : Fragment() {
 
     lateinit var worldAdapter: WorldAdapter
+    var databaseDisposable: Disposable? = null
+    var connectionDisposable: Disposable? = null
+    val worldDataApiService by lazy {
+        WorldDataApiService.ApiService.create()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,14 +48,61 @@ class WorldFragment: Fragment() {
                 layoutManager = LinearLayoutManager(this.context, RecyclerView.VERTICAL, false)
                 adapter = worldAdapter
                 worldAdapter.onItemClicked = {
-                    launchDataSheet()
+                    launchDataSheet(it)
                 }
             }
+
+            //Setup recyclerview
+            databaseDisposable =
+                HomeViewPagerFragment.homeViewModel.getWorldList((requireActivity() as MainActivity).appDatabase)
+                    .subscribeOn(Schedulers.computation())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                        { result ->
+                            Timber.d("New entries have been added, reload the list with ${result.size} items")
+                            //Set toolbar title (world count)
+                            toolbar_title.text = resources.getString(R.string.toolbar_count_title, AppUtilz.calculateWorldCount(result))
+                            worldAdapter.initAdapter(
+                                result,
+                                world_recyclerview
+                            )
+                        },
+                        { error ->
+                            Timber.d("Something has gone wrong $error")
+                        }
+                    )
         }
+        if (worldAdapter.adapterItems.isEmpty()) pullWorldData()
     }
 
-    private fun launchDataSheet() {
-        val bottomsheet = CountryDataBottomSheet()
+    fun pullWorldData() {
+        connectionDisposable = worldDataApiService.pullWorldData()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { result ->
+                    Timber.d("JL_ success, retrieved ${result.data.size}} countries")
+                    val convertedResults = ModelConverter.WorldConverter(result.data)
+                    (requireActivity() as MainActivity).saveWorldData(convertedResults)
+                },
+                { error ->
+                    Timber.d("JL_ error: ${error.message}")
+                    Toast.makeText(requireContext(), "Error: ${error.message}", Toast.LENGTH_LONG)
+                        .show()
+                }
+            )
+    }
+
+    private fun launchDataSheet(country: CountryModel) {
+        val bottomsheet = CountryDataBottomSheet().newInstance(country)
         bottomsheet.show(requireActivity().supportFragmentManager, bottomsheet.tag)
+    }
+
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        connectionDisposable?.dispose()
+        databaseDisposable?.dispose()
     }
 }

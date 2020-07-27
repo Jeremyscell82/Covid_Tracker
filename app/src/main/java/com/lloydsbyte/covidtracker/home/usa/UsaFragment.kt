@@ -36,8 +36,6 @@ class UsaFragment: Fragment() {
                 adapter = usaAdapter
                 usaAdapter.onItemClicked = {
                     Timber.d("JL_ adapter item has been clicked")
-                    val bottomsheet = DebugBottomSheet()
-                    bottomsheet.show(requireActivity().supportFragmentManager, bottomsheet.tag)
                 }
             }
         }
