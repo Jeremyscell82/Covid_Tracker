@@ -2,6 +2,7 @@
 <resources>
     <dimen name="toolbar_elevation">8dp</dimen>
     <dimen name="cardview_elevation">2dp</dimen>
+    <dimen name="searchbar_elevation">4dp</dimen>
     <dimen name="button_elevation">6dp</dimen>
     <dimen name="default_padding">4dp</dimen>
     <dimen name="default_margin">12dp</dimen>
@@ -11,5 +12,5 @@
     <dimen name="card_corner">8dp</dimen>
 
     <dimen name="bottom_nav_height">48dp</dimen>
-    <dimen name="bottom_nav_bg_height">68dp</dimen>
+    <dimen name="bottom_nav_bg_height">54dp</dimen>
 </resources>

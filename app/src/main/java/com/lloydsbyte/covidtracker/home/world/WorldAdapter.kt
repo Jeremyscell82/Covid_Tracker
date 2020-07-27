@@ -12,17 +12,38 @@ import kotlinx.android.synthetic.main.item_home.view.*
 
 class WorldAdapter: RecyclerView.Adapter<WorldAdapter.WorldViewHolder>() {
 
+    var fullListBU: List<CountryModel> = emptyList()
     var adapterItems: List<CountryModel> = emptyList()
     var onItemClicked: ((CountryModel) -> Unit)? = null
 
     fun initAdapter(items: List<CountryModel>, recyclerView: RecyclerView){
-        adapterItems = items.sortedByDescending {
+        //Sort the list
+        fullListBU = items.sortedByDescending {
             it.totalConfirmed
         }
-        adapterItems.filter {
+        //Remove non-reporting/ zero count countries
+        fullListBU.filter {
             it.totalConfirmed != 0
         }
-        val anim = AnimationUtils.loadLayoutAnimation(recyclerView.context,
+        adapterItems = fullListBU
+        refreshAdapter(recyclerView)
+    }
+
+    fun filterAdapter(filter: String, recyclerView: RecyclerView){
+        adapterItems = if (filter.isEmpty()){
+            fullListBU
+        } else {
+            val filteredItems = fullListBU.filter {
+                it.countryName.toLowerCase().contains(filter.toLowerCase())
+            }
+            filteredItems
+        }
+        refreshAdapter(recyclerView)
+    }
+
+    private fun refreshAdapter(recyclerView: RecyclerView){
+        val anim = AnimationUtils.loadLayoutAnimation(
+            recyclerView.context,
             R.anim.recyclerview_animation
         )
         recyclerView.layoutAnimation = anim

@@ -6,6 +6,7 @@ import androidx.room.Room
 import com.lloydsbyte.covidtracker.database.AppDatabase
 import com.lloydsbyte.covidtracker.home.HomeViewPagerFragment
 import com.lloydsbyte.covidtracker.database.CountryModel
+import com.lloydsbyte.covidtracker.utilz.AppUtilz
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -30,6 +31,11 @@ class MainActivity : AppCompatActivity() {
                 )
                 .commit()
         }
+        if (AppUtilz.checkConnection(this)){
+            clearData()
+        } else {
+            //Todo display dialog of no connection and to load last update (save date in shared preferences)
+        }
     }
 
 
@@ -41,6 +47,13 @@ class MainActivity : AppCompatActivity() {
         GlobalScope.launch {
             appDatabase.clearAllTables()
             appDatabase.WorldDao().addWorldList(countriesList)
+        }
+    }
+
+    private fun clearData(){
+        Timber.d("JL_ clearing data")
+        GlobalScope.launch {
+            appDatabase.clearAllTables()
         }
     }
 }

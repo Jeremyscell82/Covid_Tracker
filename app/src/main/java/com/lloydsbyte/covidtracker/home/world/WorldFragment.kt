@@ -1,6 +1,8 @@
 package com.lloydsbyte.covidtracker.home.world
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +17,7 @@ import com.lloydsbyte.covidtracker.database.CountryModel
 import com.lloydsbyte.covidtracker.utilz.ModelConverter
 import com.lloydsbyte.covidtracker.network.WorldDataApiService
 import com.lloydsbyte.covidtracker.utilz.AppUtilz
+import com.lloydsbyte.covidtracker.utilz.AppUtilz.Companion.showHideKeyboardForSearch
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -25,6 +28,7 @@ import java.text.NumberFormat
 
 class WorldFragment : Fragment() {
 
+    private var keyboardDisplayed: Boolean = false //used for auto dismissal of keyboard
     lateinit var worldAdapter: WorldAdapter
     var databaseDisposable: Disposable? = null
     var connectionDisposable: Disposable? = null
@@ -50,6 +54,48 @@ class WorldFragment : Fragment() {
                 worldAdapter.onItemClicked = {
                     launchDataSheet(it)
                 }
+            }
+
+            toolbar_search_fab.setOnClickListener {
+                toolbar_search_fab.isExpanded = true
+                showHideKeyboardForSearch(requireContext(), true, country_search_field)
+                keyboardDisplayed = true
+            }
+
+            search_close_icon.setOnClickListener {
+                toolbar_search_fab.isExpanded = false
+                country_search_field.setText("") //Clear entry on closing of search bar
+                showHideKeyboardForSearch(requireContext(), false, country_search_field)
+            }
+
+            country_search_field.addTextChangedListener(object : TextWatcher {
+                override fun afterTextChanged(p0: Editable?) {
+                }
+
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+                }
+
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    worldAdapter.filterAdapter(p0.toString(), world_recyclerview)
+                }
+
+            })
+            country_search_field.setOnFocusChangeListener { view, b ->
+                keyboardDisplayed = b
+            }
+
+            world_recyclerview.setOnScrollChangeListener { view, i, i2, i3, i4 ->
+                val accidentalScroll: Boolean = (i == 0 && i2 == 0 && i3 == 0 && i4 == 0)
+                if (keyboardDisplayed && !accidentalScroll) {
+                    showHideKeyboardForSearch(
+                        requireContext(),
+                        false,
+                        country_search_field
+                    )
+                    keyboardDisplayed = false
+                }
+
             }
 
             //Setup recyclerview

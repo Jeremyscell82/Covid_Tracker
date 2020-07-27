@@ -36,8 +36,7 @@ class CountryDataBottomSheet: BottomSheetDialogFragment() {
             }
             country_name.text = countryModel.countryName
             country_population.text = resources.getString(R.string.country_population, AppUtilz.insertCommas(countryModel.population))
-            country_updated_at.text = countryModel.updatedAt //Todo format date
-            //Todo convert to short hand
+            country_updated_at.text = AppUtilz.convertDate(countryModel.updatedAt)
             country_confirmed.text = resources.getString(R.string.country_confirmed, AppUtilz.abbreviateNumber(countryModel.totalConfirmed))//AppUtilz.insertCommas(countryModel.totalConfirmed)
             country_recovered.text = resources.getString(R.string.country_recovered, AppUtilz.abbreviateNumber(countryModel.totalRecovered))
             country_deaths.text = resources.getString(R.string.country_deaths, AppUtilz.abbreviateNumber(countryModel.totalDeaths))
