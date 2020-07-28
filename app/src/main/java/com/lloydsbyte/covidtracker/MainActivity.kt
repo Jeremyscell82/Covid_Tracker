@@ -8,6 +8,7 @@ import com.lloydsbyte.covidtracker.home.HomeViewPagerFragment
 import com.lloydsbyte.covidtracker.database.CountryModel
 import com.lloydsbyte.covidtracker.database.StateModel
 import com.lloydsbyte.covidtracker.utilz.AppUtilz
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity() {
                 )
                 .commit()
         }
+        version_view.text = BuildConfig.VERSION_NAME
         if (AppUtilz.checkConnection(this)){
             clearData()
         } else {

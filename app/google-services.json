@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "86146918516",
+    "firebase_url": "https://covid-tracker-516b7.firebaseio.com",
+    "project_id": "covid-tracker-516b7",
+    "storage_bucket": "covid-tracker-516b7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:86146918516:android:4a7d8c1d7495baad23c921",
+        "android_client_info": {
+          "package_name": "com.lloydsbyte.covidtracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "86146918516-kuib7acc2vqjkdte10e42g2i5ipq41fe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lloydsbyte.covidtracker",
+            "certificate_hash": "4d99f80d3dda95b8035db8af8c01ccd87243d2af"
+          }
+        },
+        {
+          "client_id": "86146918516-trfq7imo76kosraiicoeeb3a0qg3e8u6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBty5QgJeQuE1BvOwe1dwxUv_FWkr-Z3l4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "86146918516-trfq7imo76kosraiicoeeb3a0qg3e8u6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
