@@ -6,7 +6,7 @@
     <color name="colorAccent">@color/white</color>
     <color name="appBackground">#FFA084</color>
     <color name="primaryTextColor">@color/white</color>
-    <color name="secondaryTextColor">#1967A5</color>
+    <color name="secondaryTextColor">#1667A8</color>
     <color name="iconColor">#085D93</color>
     <color name="cardviewBackground">#EFEFEF</color>
     <color name="errorRed">#9AA20000</color>

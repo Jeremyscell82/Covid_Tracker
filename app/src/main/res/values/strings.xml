@@ -8,10 +8,26 @@
     <string name="toolbar_deaths">Deaths</string>
     <string name="navbar_world">World</string>
     <string name="navbar_usa">USA</string>
-    <string name="country_population">population: %s</string>
-    <string name="country_confirmed">%s\nConfirmed</string>
-    <string name="country_recovered">%s\nRecovered</string>
-    <string name="country_deaths">%s\nDeaths</string>
-    <string name="country_recover_rate">%s\nRecover Rate</string>
-    <string name="country_death_rate">%s\nDeath Rate</string>
+    <string name="data_population">population: %s</string>
+    <string name="data_confirmed">%s\nConfirmed</string>
+    <string name="data_recovered">%s\nRecovered</string>
+    <string name="data_deaths">%s\nDeaths</string>
+    <string name="data_increase">%s\nIncrease</string>
+    <string name="data_hospitalized">%s\nHospitalized</string>
+    <string name="data_recover_rate">%s\nRecover Rate</string>
+    <string name="data_death_rate">%s\nDeath Rate</string>
+
+    <!-- Info Dialog Strings -->
+    <string name="dialog_title">How accurate is this data?</string>
+    <string name="dialog_world_message">Collected by \n\t\t•\t about-corona.net
+        \n\t\t•\t WHO Situation Reports
+        \n\t\t•\t John Hopkins CSSE
+        \n\t\t•\t NHC
+        \n\t\t•\t ECDC
+        \n\t\t•\t CCDC
+        \n\nfor more info visit about-corona.net</string>
+    <string name="dialog_usa_message">Collected manually by\n\t\t•\t covidtracking.com\n\nData is being taken directly from the websites of local or state/territory public health authorities.\n\nfor more info visit covidtracking.com</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">CANCEL</string>
+
 </resources>

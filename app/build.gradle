@@ -65,5 +65,7 @@ dependencies {
     implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7.6'
     //MP Android Chart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    //Material Design Dialogs
+    implementation 'com.afollestad.material-dialogs:core:3.3.0'
 
 }

@@ -14,7 +14,7 @@ class UsaAdapter: RecyclerView.Adapter<UsaAdapter.UsaViewHolder>() {
 
     var fullListBU: List<StateModel> = emptyList()
     var adapterItems: List<StateModel> = emptyList()
-    var onItemClicked: ((StateModel?) -> Unit)? = null
+    var onItemClicked: ((StateModel) -> Unit)? = null
 
     fun initAdapter(items: List<StateModel>, recyclerView: RecyclerView){
         //Sort the list

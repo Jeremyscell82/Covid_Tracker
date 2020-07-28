@@ -10,11 +10,11 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.afollestad.materialdialogs.MaterialDialog
 import com.lloydsbyte.covidtracker.MainActivity
 import com.lloydsbyte.covidtracker.R
-import com.lloydsbyte.covidtracker.database.CountryModel
+import com.lloydsbyte.covidtracker.database.StateModel
 import com.lloydsbyte.covidtracker.home.HomeViewPagerFragment
-import com.lloydsbyte.covidtracker.home.world.CountryDataBottomSheet
 import com.lloydsbyte.covidtracker.network.UsaDataApiService
 import com.lloydsbyte.covidtracker.utilz.AppUtilz
 import com.lloydsbyte.covidtracker.utilz.ModelConverter
@@ -54,7 +54,7 @@ class UsaFragment: Fragment() {
                 layoutManager = LinearLayoutManager(this.context, RecyclerView.VERTICAL, false)
                 adapter = usaAdapter
                 usaAdapter.onItemClicked = {
-                    Timber.d("JL_ adapter item has been clicked")
+                    launchDataSheet(it)
                 }
             }
 
@@ -83,6 +83,10 @@ class UsaFragment: Fragment() {
             })
             search_field.setOnFocusChangeListener { view, b ->
                 keyboardDisplayed = b
+            }
+
+            usa_info_fab.setOnClickListener {
+                showInfoDialog()
             }
 
             usa_recyclerview.setOnScrollChangeListener { view, i, i2, i3, i4 ->
@@ -139,9 +143,19 @@ class UsaFragment: Fragment() {
             )
     }
 
-    private fun launchDataSheet(country: CountryModel) {
-        val bottomsheet = CountryDataBottomSheet().newInstance(country)
+    private fun launchDataSheet(state: StateModel) {
+        val bottomsheet = StateDataBottomSheet().newInstance(state)
         bottomsheet.show(requireActivity().supportFragmentManager, bottomsheet.tag)
+    }
+
+    private fun showInfoDialog() {
+        MaterialDialog(requireActivity()).show {
+            title(R.string.dialog_title)
+            message(R.string.dialog_usa_message)
+            positiveButton(R.string.dialog_ok) { dialog ->
+                dialog.dismiss()
+            }
+        }
     }
 
     fun closeSearchBar(){

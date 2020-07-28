@@ -15,7 +15,7 @@
         app:layout_constraintGuide_percent=".5" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/country_close_fab"
+        android:id="@+id/data_close_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/default_margin"
@@ -29,7 +29,7 @@
         app:tint="@color/primaryTextColor" />
 
     <TextView
-        android:id="@+id/country_name"
+        android:id="@+id/data_name"
         style="@style/font_title_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/country_population"
+        android:id="@+id/data_population"
         style="@style/font_body_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -52,21 +52,21 @@
         tools:text="population 900,000"
         android:textColor="@color/primaryTextColor"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/country_name" />
+        app:layout_constraintTop_toBottomOf="@id/data_name" />
 
     <View
-        android:id="@+id/country_divider"
+        android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_margin="@dimen/default_padding"
         android:background="@color/whiteShadow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/country_population" />
+        app:layout_constraintTop_toBottomOf="@id/data_population" />
 
 
     <TextView
-        android:id="@+id/country_updated_at"
+        android:id="@+id/data_updated_at"
         style="@style/font_body_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -74,12 +74,12 @@
         tools:text="Updated on 7/21/2020"
         android:textColor="@color/primaryTextColor"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/country_population" />
+        app:layout_constraintTop_toTopOf="@id/data_population" />
 
 
     <!-- Grid Section -->
     <TextView
-        android:id="@+id/country_recovered"
+        android:id="@+id/data_recovered"
         style="@style/font_title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -89,22 +89,22 @@
         android:textColor="@color/primaryTextColor"
         app:layout_constraintEnd_toStartOf="@id/country_center_guideline"
         app:layout_constraintStart_toEndOf="@id/country_center_guideline"
-        app:layout_constraintTop_toBottomOf="@id/country_divider" />
+        app:layout_constraintTop_toBottomOf="@id/divider" />
 
     <TextView
-        android:id="@+id/country_confirmed"
+        android:id="@+id/data_confirmed"
         style="@style/font_title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         tools:text="48k\nConfirmed"
         android:textColor="@color/primaryTextColor"
-        app:layout_constraintEnd_toStartOf="@id/country_recovered"
+        app:layout_constraintEnd_toStartOf="@id/data_recovered"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/country_recovered" />
+        app:layout_constraintTop_toTopOf="@id/data_recovered" />
 
     <TextView
-        android:id="@+id/country_deaths"
+        android:id="@+id/data_deaths"
         style="@style/font_title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -112,12 +112,12 @@
         tools:text="48k\nDeaths"
         android:textColor="@color/primaryTextColor"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/country_recovered"
-        app:layout_constraintTop_toTopOf="@id/country_recovered" />
+        app:layout_constraintStart_toEndOf="@id/data_recovered"
+        app:layout_constraintTop_toTopOf="@id/data_recovered" />
 
 
     <TextView
-        android:id="@+id/country_recovery_rate"
+        android:id="@+id/data_recovery_rate"
         style="@style/font_title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -127,10 +127,10 @@
         android:textColor="@color/primaryTextColor"
         app:layout_constraintEnd_toStartOf="@id/country_center_guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/country_recovered" />
+        app:layout_constraintTop_toBottomOf="@id/data_recovered" />
 
     <TextView
-        android:id="@+id/country_death_rate"
+        android:id="@+id/data_death_rate"
         style="@style/font_title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -139,7 +139,7 @@
         android:textColor="@color/primaryTextColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/country_center_guideline"
-        app:layout_constraintTop_toTopOf="@id/country_recovery_rate"/>
+        app:layout_constraintTop_toTopOf="@id/data_recovery_rate"/>
 
     <View
         android:layout_width="0dp"
@@ -148,7 +148,7 @@
         android:background="@color/whiteShadow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/country_recovery_rate" />
+        app:layout_constraintTop_toBottomOf="@id/data_recovery_rate" />
 
 
     <FrameLayout
@@ -160,6 +160,6 @@
         app:layout_constraintDimensionRatio="16:9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/country_recovery_rate" />
+        app:layout_constraintTop_toBottomOf="@id/data_recovery_rate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

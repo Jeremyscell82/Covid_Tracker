@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.afollestad.materialdialogs.MaterialDialog
 import com.lloydsbyte.covidtracker.MainActivity
 import com.lloydsbyte.covidtracker.R
 import com.lloydsbyte.covidtracker.home.HomeViewPagerFragment
@@ -83,6 +84,9 @@ class WorldFragment : Fragment() {
                 keyboardDisplayed = b
             }
 
+            world_info_fab.setOnClickListener {
+                showInfoDialog()
+            }
             world_recyclerview.setOnScrollChangeListener { view, i, i2, i3, i4 ->
                 val accidentalScroll: Boolean = (i == 0 && i2 == 0 && i3 == 0 && i4 == 0)
                 if (keyboardDisplayed && !accidentalScroll) {
@@ -140,6 +144,16 @@ class WorldFragment : Fragment() {
     private fun launchDataSheet(country: CountryModel) {
         val bottomsheet = CountryDataBottomSheet().newInstance(country)
         bottomsheet.show(requireActivity().supportFragmentManager, bottomsheet.tag)
+    }
+
+    private fun showInfoDialog() {
+        MaterialDialog(requireActivity()).show {
+            title(R.string.dialog_title)
+            message(R.string.dialog_world_message)
+            positiveButton(R.string.dialog_ok) { dialog ->
+                dialog.dismiss()
+            }
+        }
     }
 
     fun closeSearchBar(){
