@@ -7,6 +7,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Headers
+import retrofit2.http.Path
 
 class WorldDataApiService {
 
@@ -55,11 +56,45 @@ class WorldDataApiService {
         val recoveryRate: Float?
     )
 
+    /** ======================= Individual Api Result =================== **/
+    data class CountryResult(
+        @SerializedName("data")
+        val data: CountryData
+    )
+
+    data class CountryData(
+        @SerializedName("timeline")
+        val timeline: List<Timeline>
+    )
+
+    data class Timeline(
+        @SerializedName("update_at")
+        val updateAt: String,
+        @SerializedName("deaths")
+        val deaths: Int,
+        @SerializedName("confirmed")
+        val confirmed: Int,
+        @SerializedName("new_confirmed")
+        val newConfirmed: Int,
+        @SerializedName("new_recovered")
+        val newRecovered: Int,
+        @SerializedName("new_deaths")
+        val newDeaths: Int,
+        @SerializedName("is_in_progress")
+        val isInProgress: Boolean,
+        @SerializedName("active")
+        val active: Int
+        )
+
     interface ApiService {
 
         @Headers("Content-Type: application/json")
         @GET("countries")
         fun pullWorldData(): Observable<WorldApiResult>
+
+        @Headers("Content-Type: application/json")
+        @GET("countries/{code}")
+        fun pullCountryData(@Path("code") code: String): Observable<CountryResult>
 
         companion object {
             fun create(): ApiService {

@@ -34,6 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
+        android:layout_marginStart="24dp"
         android:padding="@dimen/default_padding"
         tools:text="United States of America"
         android:textColor="@color/primaryTextColor"
@@ -142,24 +143,24 @@
         app:layout_constraintTop_toTopOf="@id/data_recovery_rate"/>
 
     <View
+        android:id="@+id/second_divider"
         android:layout_width="0dp"
         android:layout_height="2dp"
-        android:layout_margin="@dimen/default_padding"
         android:background="@color/whiteShadow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/data_recovery_rate" />
 
 
-    <FrameLayout
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/data_linechart"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="@dimen/default_margin"
         android:background="@color/whiteShadow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="16:9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/data_recovery_rate" />
+        app:layout_constraintTop_toBottomOf="@id/second_divider" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
