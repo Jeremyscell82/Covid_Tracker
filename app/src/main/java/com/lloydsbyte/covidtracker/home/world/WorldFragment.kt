@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.materialdialogs.MaterialDialog
+import com.lloydsbyte.covidtracker.BuildConfig
 import com.lloydsbyte.covidtracker.MainActivity
 import com.lloydsbyte.covidtracker.R
 import com.lloydsbyte.covidtracker.home.HomeViewPagerFragment
@@ -121,6 +122,9 @@ class WorldFragment : Fragment() {
                     )
         }
         if (worldAdapter.adapterItems.isEmpty()) pullWorldData()
+
+        //Set version number
+        version_view.text = BuildConfig.VERSION_NAME
     }
 
     fun pullWorldData() {
