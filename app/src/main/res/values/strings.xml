@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Covid Tracker</string>
     <string name="splash_title">Collecting tracking data…</string>
+    <string name="loading_view_text">Loading data, one second please</string>
     <string name="toolbar_count_title">%s infected\nWorld Wide</string>
     <string name="toolbar_world_country">Country</string>
     <string name="toolbar_state">State</string>
@@ -12,12 +13,14 @@
     <string name="data_confirmed">%s\nConfirmed</string>
     <string name="data_recovered">%s\nRecovered</string>
     <string name="data_deaths">%s\nDeaths</string>
-    <string name="data_increase">%s\nIncrease</string>
+    <string name="data_increase">%s\nDoD Increase</string>
     <string name="data_hospitalized">%s\nHospitalized</string>
     <string name="data_recover_rate">%s\nRecover Rate</string>
     <string name="data_death_rate">%s\nDeath Rate</string>
 
     <!-- Info Dialog Strings -->
+    <string name="dialog_no_connection_title">No internet detected</string>
+    <string name="dialog_no_connection_message">Please check your internet connection and try again.</string>
     <string name="dialog_title">How accurate is this data?</string>
     <string name="dialog_world_message">Collected by \n\t\t•\t about-corona.net
         \n\t\t•\t WHO Situation Reports

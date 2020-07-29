@@ -4,15 +4,29 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.lloydsbyte.covidtracker.R
 import com.lloydsbyte.covidtracker.database.StateModel
+import com.lloydsbyte.covidtracker.network.UsaDataApiService
 import com.lloydsbyte.covidtracker.utilz.AppUtilz
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.bottomsheet_data.*
 import kotlinx.android.synthetic.main.bottomsheet_data.view.*
+import timber.log.Timber
 
 class StateDataBottomSheet: BottomSheetDialogFragment() {
 
     lateinit var stateModel: StateModel
+    var connectionDisposable: Disposable? = null
+    val stateDataApiService by lazy {
+        UsaDataApiService.ApiService.create()
+    }
 
     fun newInstance(state: StateModel): StateDataBottomSheet {
         val fragment = StateDataBottomSheet()
@@ -45,5 +59,39 @@ class StateDataBottomSheet: BottomSheetDialogFragment() {
             data_recovery_rate.text = resources.getString(R.string.data_hospitalized, AppUtilz.insertCommas(stateModel.hospitalized))
             data_death_rate.text = resources.getString(R.string.data_deaths, AppUtilz.insertCommas(stateModel.totalDeaths))
         }
+        pullCountryHistoryData()
+    }
+
+    fun pullCountryHistoryData() {
+        connectionDisposable = stateDataApiService.pullStateData(stateModel.stateCode.toLowerCase())
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { result ->
+                    prepareChart(result.asReversed())
+                },
+                { error ->
+                    Timber.d("JL_ error: ${error.message}")
+                    Toast.makeText(requireContext(), "Error: ${error.message}", Toast.LENGTH_LONG)
+                        .show()
+                }
+            )
+    }
+
+    fun prepareChart(history: List<UsaDataApiService.StateHistory>) {
+        var entries: MutableList<Entry> = mutableListOf()
+        for ((count, data) in history.withIndex()) {
+
+            // turn your data into Entry objects
+            entries.add(
+                Entry(
+                    count.toFloat(),
+                    data.newConfirmed.toFloat()
+                )
+            )
+        }
+        var dataSet = LineDataSet(entries, "Count")
+        data_linechart.data = LineData(dataSet)
+        data_linechart.invalidate()
     }
 }

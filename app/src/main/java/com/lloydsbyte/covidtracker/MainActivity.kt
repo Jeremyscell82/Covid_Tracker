@@ -2,7 +2,9 @@ package com.lloydsbyte.covidtracker
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.room.Room
+import com.afollestad.materialdialogs.MaterialDialog
 import com.lloydsbyte.covidtracker.database.AppDatabase
 import com.lloydsbyte.covidtracker.home.HomeViewPagerFragment
 import com.lloydsbyte.covidtracker.database.CountryModel
@@ -35,12 +37,27 @@ class MainActivity : AppCompatActivity() {
         }
         version_view.text = BuildConfig.VERSION_NAME
         if (AppUtilz.checkConnection(this)){
+            displayLoadingScreen(true)
             clearData()
         } else {
             //Todo display dialog of no connection and to load last update (save date in shared preferences)
+            displayInfoDialog(R.string.dialog_no_connection_title, R.string.dialog_no_connection_message)
         }
     }
 
+    fun displayLoadingScreen(displayIt: Boolean) {
+        loading_progress_view.visibility = if (displayIt) View.VISIBLE else View.GONE
+    }
+
+    fun displayInfoDialog(title: Int, message: Int) {
+        MaterialDialog(this).show {
+            title(title)
+            message(message)
+            positiveButton(R.string.dialog_ok) { dialog ->
+                dialog.dismiss()
+            }
+        }
+    }
 
     /**
      * Database controls
@@ -50,6 +67,7 @@ class MainActivity : AppCompatActivity() {
         GlobalScope.launch {
             appDatabase.WorldDao().addWorldList(countriesList)
         }
+        displayLoadingScreen(false)
     }
 
     fun saveUsaData(stateList: List<StateModel>) {
@@ -57,6 +75,7 @@ class MainActivity : AppCompatActivity() {
         GlobalScope.launch {
             appDatabase.UsaDao().addStatesList(stateList)
         }
+        displayLoadingScreen(false) //This could cause issues, if one fails it will be dismissed by the other pull... fix coming soon!
     }
 
     private fun clearData(){

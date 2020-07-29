@@ -78,10 +78,8 @@ class CountryDataBottomSheet : BottomSheetDialogFragment() {
                 R.string.data_death_rate,
                 AppUtilz.convertToPercentage(countryModel.deathRate)
             )
-
-            pullCountryHistoryData()
-//            prepareChart(listOf("one","one","one","one","one","one","one","one","one"))
         }
+        pullCountryHistoryData()
     }
 
     fun pullCountryHistoryData() {

@@ -16,7 +16,6 @@ import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.HashMap
 
 class AppUtilz {
     companion object {
@@ -56,11 +55,13 @@ class AppUtilz {
             Timber.d("JL_ abbreviate number... $number")
             return if (number.length > 6) {
                 //Million
-                var value = number.dropLast(6)
-                val test = number.dropLast(5).last()
-                "${value}.${test}M"
+                val value = number.dropLast(6)
+                val point = number.dropLast(5).last()
+                "${value}.${point}M"
             } else if (number.length > 3) {
-                "${number.dropLast(3)}k"
+                val value = number.dropLast(3)
+                val point = number.dropLast(2).last()
+                "${value}.${point}k"
             } else {
                 number
             }
