@@ -10,6 +10,7 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.lloydsbyte.covidtracker.MainActivity
 import com.lloydsbyte.covidtracker.R
 import com.lloydsbyte.covidtracker.database.CountryModel
@@ -92,8 +93,7 @@ class CountryDataBottomSheet : BottomSheetDialogFragment() {
                 },
                 { error ->
                     Timber.d("JL_ error: ${error.message}")
-                    Toast.makeText(requireContext(), "Error: ${error.message}", Toast.LENGTH_LONG)
-                        .show()
+                    FirebaseCrashlytics.getInstance().setCustomKey("CountryPullError", "${countryModel.countryCode} : ${error.message}")
                 }
             )
     }

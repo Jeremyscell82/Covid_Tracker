@@ -8,7 +8,9 @@ import android.widget.Toast
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
+import com.google.android.gms.common.util.CrashUtils
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.lloydsbyte.covidtracker.R
 import com.lloydsbyte.covidtracker.database.StateModel
 import com.lloydsbyte.covidtracker.network.UsaDataApiService
@@ -72,8 +74,7 @@ class StateDataBottomSheet: BottomSheetDialogFragment() {
                 },
                 { error ->
                     Timber.d("JL_ error: ${error.message}")
-                    Toast.makeText(requireContext(), "Error: ${error.message}", Toast.LENGTH_LONG)
-                        .show()
+                    FirebaseCrashlytics.getInstance().setCustomKey("StatePullError", "${stateModel.stateCode} : ${error.message}")
                 }
             )
     }

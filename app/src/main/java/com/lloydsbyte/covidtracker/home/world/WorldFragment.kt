@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.materialdialogs.MaterialDialog
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.lloydsbyte.covidtracker.BuildConfig
 import com.lloydsbyte.covidtracker.MainActivity
 import com.lloydsbyte.covidtracker.R
@@ -139,8 +140,7 @@ class WorldFragment : Fragment() {
                 },
                 { error ->
                     Timber.d("JL_ error: ${error.message}")
-                    Toast.makeText(requireContext(), "Error: ${error.message}", Toast.LENGTH_LONG)
-                        .show()
+                    FirebaseCrashlytics.getInstance().setCustomKey("WorldPullError", "${error.message}")
                 }
             )
     }
