@@ -19,7 +19,7 @@ class UsaAdapter: RecyclerView.Adapter<UsaAdapter.UsaViewHolder>() {
     fun initAdapter(items: List<StateModel>, recyclerView: RecyclerView){
         //Sort the list
         fullListBU = items.sortedByDescending {
-            it.totalConfirmed
+            it.increase
         }
         adapterItems = fullListBU
         refreshAdapter(recyclerView)
