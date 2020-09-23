@@ -30,7 +30,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 Thank you to the people behind about-corona.net and covidtracking.com for collecting this data and making it so easy to use.
 
 ## Download
-currrent version = 1.0
+currrent version = 1.0.2
 
 <a href="https://github.com/Jeremyscell82/Covid_Tracker/raw/master/app/release/app-release.apk">Download App</a>
 
