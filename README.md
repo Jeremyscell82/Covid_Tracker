@@ -1,3 +1,5 @@
+## CURRENTLY US DATA IS NO LONGER PROVIDED, AN UPDATE IS COMING SOON
+
 # COVID TRACKING
 
 In 2020 news comes in all shapes and sizes and some may even still be telling the truth, but they are hard to find these covid days. So I decided to build an application based off sources of truth to help (at least me) determine which story is false faster, sources listed below.
